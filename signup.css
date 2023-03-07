@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(-150deg, rgb(188, 18, 211), rgb(18, 121, 206));
+}
+
+h1{
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+img{
+    height: 85px;
+    width: 85px;
+    display: flex;
+}
+
+.sampul{
+    width: 550px;
+    height: 1150px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.sampul .inputdata{
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+
+.sampul .inputdata input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 15px;
+    border-bottom: 3px solid silver;
+}
+
+h4{
+    padding-top: 25px;
+    padding-bottom: 5px;
+}
+
+.inputdata input:focus,
+.inputdata input:valid{
+    font-size: 15px;
+    border-color: rgb(95, 110, 245);
+}
+
+.sampul .inputdata label{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: gray;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.inputdata{
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    margin-right: 10px;
+}
+
+.inputdata:before{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: rgb(4, 109, 194);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.inputdata input:focus:before,
+.inputdata input:valid:before{
+    transform: scaleX(1);
+}
+
+.text-merah{
+    font-weight: bold;
+    color: red;
+}
+
+.dream{
+    padding-top: 35px;
+    margin-bottom: 1rem;
+    text-align: center
+}
+
+select{
+    width: 100%;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+a.signup{
+    display: flex;
+    color: white;
+    font-weight: bolder;
+    font-size: large;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 10px;
+    padding: .7rem 7rem;
+    margin-bottom: 2rem;
+    background-color: rgb(18, 121, 206);
+    position: relative;
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 10px rgb(59, 59, 59);
+}
+
+a.signup:hover{
+    background-color:  rgb(156, 7, 175);
+}

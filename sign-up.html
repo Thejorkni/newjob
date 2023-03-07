@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW JOBS</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="sampul">
+        <h1>Registration</h1>
+        <center>
+            <img src="img.it/icon login(1).png">
+        </center>
+        <h4>Nama Lengkap <span class="text-merah">*</span></h4>
+        <div class="inputdata">
+            <input name="field1" type="text" placeholder="Masukkan Nama Lengkap" required="">
+        </div>
+        <h4>Akun Email <span class="text-merah">*</span></h4>
+        <div class="inputdata">
+            <input name="field2" type="text" placeholder="Masukkan Email" required="">
+        </div>
+        <h4>Password <span class="text-merah">*</span></h4>
+        <div class="inputdata">
+            <input name="field3" type="password" placeholder="Masukkan Password" required="">
+        </div>
+        <h4>Konfirmasi Password <span class="text-merah">*</span></h4>
+        <div class="inputdata">
+            <input name="field4" type="password" placeholder="Ulangi Password" required="">
+        </div>
+        <h4>Nomor Telepon <span class="text-merah">*</span></h4>
+        <div class="inputdata">
+            <input name="field5" type="number" placeholder="Masukkan Nomor Telepon/Nomor WhatsApp" required="">
+        </div>
+        <h4>Tanggal Lahir <span class="text-merah">*</span></h4>
+        <div class="inputdata">
+            <input name="field6" type="date" placeholder="Masukkan Tanggal Lahir" required="">
+        </div>
+        <h4>Jenis Kelamin <span class="text-merah">*</span></h4>
+        <td>
+            <input type="radio" required="" name="jk"> Laki-laki
+        <br><input type="radio" required="" name="jk"> Perempuan
+        </td>
+        <form method="POST">
+            <div class="form-group">
+                <h4>Provinsi <span class="text-merah">*</span></h4><br />
+                <select name="provinsi" id="provinsi">
+                    <option>Pilih Asal Provinsi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h4>Kab/Kota <span class="text-merah">*</span></h4><br />
+                <select name="kota" id="kota">
+                    <option>Pilih Kabupaten/Kota</option>
+                </select>
+        </form>
+        <script>
+            fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/provinces.json`)
+                .then((response) => response.json())
+                .then((provinces) => {
+                    var data = provinces;
+                    var tampung = `<option>Pilih Asal Provinsi</option>`;
+                    data.forEach((element) => {
+                        tampung += `<option data-prov="${element.id}" value="${element.name}">${element.name}</option>`;
+                    });
+                    document.getElementById("provinsi").innerHTML = tampung;
+                });
+        </script>
+        <script>
+            const selectProvinsi = document.getElementById('provinsi');
+            const selectKota = document.getElementById('kota');
+    
+            selectProvinsi.addEventListener('change', (e) => {
+                var provinsi = e.target.options[e.target.selectedIndex].dataset.prov;
+                fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/${provinsi}.json`)
+                    .then((response) => response.json())
+                    .then((regencies) => {
+                        var data = regencies;
+                        var tampung = `<option>Pilih Kabupaten/Kota</option>`;
+                        document.getElementById('kota').innerHTML = '<option>Pilih Kabupaten/Kota</option>';
+                        data.forEach((element) => {
+                            tampung += `<option data-prov="${element.id}" value="${element.name}">${element.name}</option>`;
+                        });
+                        document.getElementById("kota").innerHTML = tampung;
+                    });
+            });
+    
+            selectKota.addEventListener('change', (e) => {
+                var kota = e.target.options[e.target.selectedIndex].dataset.prov;
+                fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/districts/${kota}.json`)
+                    .then((response) => response.json())
+                    .then((districts) => {
+                        var data = districts;
+                        var tampung = `<option>Pilih Kabupaten/Kota</option>`
+                        data.forEach((element) => {
+                            tampung += `<option data-prov="${element.id}" value="${element.name}">${element.name}</option>`;
+                        });
+                    });
+            });
+        </script>
+        <form class="dream">
+            <input type="checkbox">
+            <label>Saya Menyetujui 
+                <span class="text-merah">Syarat & Ketentuan</span>
+                <span>Yang Berlaku</span>
+                <span class="text-merah">*</span>
+            </label>
+        </form>
+        <a class="signup" onclick="document.location='index.html'">Register</a> 
+    </div>
+</body>
+</html>
